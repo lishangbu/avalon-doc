@@ -2,6 +2,7 @@ import {defineConfig} from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+    base: '/fairyland-doc',
     lang: 'zh-CN',
     title: "Fairyland",
     description: "A Document Site for Fairyland",
