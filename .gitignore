@@ -21,3 +21,4 @@ package-lock.json
 #vitepress cache and build files
 .vitepress/cache
 .vitepress/build
+.vitepress/dist
