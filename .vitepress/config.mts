@@ -2,10 +2,10 @@ import {defineConfig} from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    base: '/fairyland-doc',
+    base: '/avalon-doc',
     lang: 'zh-CN',
-    title: "Fairyland",
-    description: "A Document Site for Fairyland",
+    title: "Avalon",
+    description: "A Document Site for Avalon",
     lastUpdated: true,
     themeConfig: {
         search: {
@@ -19,9 +19,9 @@ export default defineConfig({
         nav: [
             {
                 text: '获取源码', items: [
-                    {text: '前端源码', link: 'https://github.com/lishangbu/fairyland-ui'},
-                    {text: '服务端源码', link: 'https://github.com/lishangbu/fairyland'},
-                    {text: '文档源码', link: 'https://github.com/lishangbu/fairyland-doc'}
+                    {text: '前端源码', link: 'https://github.com/lishangbu/avalon-ui'},
+                    {text: '服务端源码', link: 'https://github.com/lishangbu/avalon'},
+                    {text: '文档源码', link: 'https://github.com/lishangbu/avalon-doc'}
                 ]
             },
         ],
@@ -30,7 +30,13 @@ export default defineConfig({
             {
                 text: '服务端',
                 items: [
-                    {text: '快速开始', link: '/zh-cn/server/intro/getting-start'},
+                    {text: '快速开始', link: '/zh-cn/server/intro/getting-start'}
+                ]
+            },
+            {
+                text: '环境搭建',
+                items: [
+                    {text: 'Nexus', link: '/zh-cn/server/environment-setup/nexus'},
                 ]
             },
             {

@@ -5,14 +5,12 @@
 - 熟悉 Java 环境配置及其开发
 - 熟悉 关系型 数据库，比如 Postgres
 - 熟悉 [Spring Boot](https://spring.io/)
-- 熟悉 网络游戏服务器框架[ioGame](https://game.iohao.com)
-- 熟悉 Java ORM框架[Mybatis-Flex](https://mybatis-flex.com)
 - 熟悉 Java 构建工具，比如 Maven
 
 **⚠️注意**
 
 项目大量使用了Java
-APT技术，包括[lombok](https://www.projectlombok.org/)、[MapStruct](https://mapstruct.org/)、[mybatis-flex](https://mybatis-flex.com/)
+APT技术，包括[lombok](https://www.projectlombok.org/)、[MapStruct](https://mapstruct.org/)
 因此在项目未编译前爆错是很正常的,只需要执行一次编译即可。
 
 以下方式随意选择一个就行
@@ -43,6 +41,5 @@ mvn clean compile
 
 只需要为了开发体验，建议使用以下插件:
 
-- [Lombok](https://plugins.jetbrains.com/plugin/6317-lombok)
+- [Lombok](https://plugins.jetbrains.com/plugin/6317-lombok)(高版本IntelliJ IDEA 内置此插件)
 - [mapstruct-support](https://plugins.jetbrains.com/plugin/10036-mapstruct-support)
-- [IoGame](https://plugins.jetbrains.com/plugin/20526-iogame)(付费插件，可选支持)
