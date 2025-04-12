@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Fairyland"
+  name: "Avalon"
   text: "一个类似宝可梦的作品"
   tagline: 
   actions:

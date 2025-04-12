@@ -67,4 +67,14 @@ maven的配置文件默认应该在用户目录的.m2文件夹下的settings.xml
   </servers>
 ```
 
+也可以添加镜像,在mirrors块中添加以下内容:
+```xml
+  <mirrors>
+    <mirror>
+        <id>deploymentRepo</id>
+        <mirrorOf>*</mirrorOf>
+        <url>http://127.0.0.1:8081/repository/maven-public</url>
+    </mirror>
+  </mirrors>
+```
 这样就完成了私服的搭建，在项目中可以直接使用。

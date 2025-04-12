@@ -16,7 +16,7 @@
 ## 下载项目
 
 ```bash
-git clone  https://github.com/lishangbu/fairyland-ui
+git clone  https://github.com/lishangbu/avalon-ui
 ```
 
 ## 安装依赖
