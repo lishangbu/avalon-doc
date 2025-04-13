@@ -7,39 +7,38 @@
 - 熟悉 [Spring Boot](https://spring.io/)
 - 熟悉 Java 构建工具，比如 Maven
 
-**⚠️注意**
+## 准备
 
-项目大量使用了Java
-APT技术，包括[lombok](https://www.projectlombok.org/)、[MapStruct](https://mapstruct.org/)
-因此在项目未编译前爆错是很正常的,只需要执行一次编译即可。
+- 一个JDK21环境
+- 一款你熟悉的IDE或者编辑器，比如IntelliJ IDEA
 
-以下方式随意选择一个就行
-
-- 可以使用以下命令编译项目:
+### 下载项目
 
 ```bash
-mvn compile
+git clone  https://github.com/lishangbu/avalon
 ```
 
-此命令会编译 src/main/java 目录中的源代码。
+之后就可以使用IDE打开对应项目了，
 
-- 编译并跳过测试:
+### 生成运行必须的资源
 
-```bash
-mvn compile -DskipTests
+从安全与git仓库占用等角度考虑，部分密钥以及IP数据库等大型文件并没有放入，因此在运行项目之前，需要执行项目根路径下的```scripts```文件夹中的```rsa-key-pair.sh```与```ip-data-downloader.sh```进行JWT RSA密钥生成与IP数据下载。
+
+### 初始化数据库
+项目本身采用的是```postgres```数据库,如果要更换其他数据库， 调整avalon-server的application.yml相关文件,并在avalon-server加入对应的数据库依赖，默认情况下，项目运行时会自动建表，如果需要改变这一行为，可以调整此处配置:
+```yaml
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update #或者为 create,create-drop都能起到自动建表的效果
 ```
 
-如果你希望在编译时跳过测试阶段，可以使用此命令。
+### 启动
 
-- 清理并编译:
+执行avalon-server模块下的AvalonStandaloneServerApplication的main方法，IDE会启动一个可运行的Spring
+Boot项目了。
 
-```bash
-mvn clean compile
-```
-
-此命令会先执行 clean 阶段（清除之前的构建文件），然后执行 compile 阶段（编译代码）。
-
-只需要为了开发体验，建议使用以下插件:
+为了开发体验，建议使用以下插件:
 
 - [Lombok](https://plugins.jetbrains.com/plugin/6317-lombok)(高版本IntelliJ IDEA 内置此插件)
 - [mapstruct-support](https://plugins.jetbrains.com/plugin/10036-mapstruct-support)
