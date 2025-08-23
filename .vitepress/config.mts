@@ -36,7 +36,8 @@ export default defineConfig({
             {
                 text: '环境搭建',
                 items: [
-                    {text: 'Nexus', link: '/zh-cn/server/environment-setup/nexus'},
+                    {text: '数据库', link: '/zh-cn/server/environment-setup/postgres'},
+                    {text: 'Intellij IDEA', link: '/zh-cn/server/environment-setup/idea'},
                 ]
             },
             {
