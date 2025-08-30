@@ -18,11 +18,14 @@ JDK有多种方式，包括sdkman、homebrew、vfox、asdf等，笔者采用的�
 
 为了开发体验，建议使用以下插件:
 
-| 插件                                                                                     | 备注                                            |
-|----------------------------------------------------------------------------------------|-----------------------------------------------|
-| [Lombok](https://plugins.jetbrains.com/plugin/6317-lombok)                             | 高版本IntelliJ IDEA内置此插件                         |
+| 插件                                                                                     | 备注                                          |
+|----------------------------------------------------------------------------------------|---------------------------------------------|
+| [Lombok](https://plugins.jetbrains.com/plugin/6317-lombok)                             | 高版本IntelliJ IDEA内置此插件                       |
 | [EasyCode Plus](https://plugins.jetbrains.com/plugin/13847-easycode-plus)              | 项目使用该插件进行传统三层架构布局生成，具体模板可以在根目录的EasyCode文件夹下找到 |
-| [MyBatisCodeHelperPro](https://plugins.jetbrains.com/plugin/9837-mybatiscodehelperpro) | 部分功能可能要付费                                     |
+| [MyBatisCodeHelperPro](https://plugins.jetbrains.com/plugin/9837-mybatiscodehelperpro) | 部分功能可能要付费                                   |
+| [Spotless Applier](https://plugins.jetbrains.com/plugin/22455-spotless-applier)        | 使用spotless格式化代码，通过Settings > Tools > Actions on Save > Run spotless 来启用
+
+                            |
 
 之后就可以使用IDE打开对应项目了，
 
