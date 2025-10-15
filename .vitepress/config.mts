@@ -41,9 +41,9 @@ export default defineConfig({
                 ]
             },
             {
-                text: '客户端',
+                text: '管理平台',
                 items: [
-                    {text: '快速开始', link: '/zh-cn/client/intro/getting-start'},
+                    {text: '快速开始', link: '/zh-cn/admin-ui/intro/getting-start'},
                 ]
             },
         ]

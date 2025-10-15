@@ -1,35 +1,46 @@
-name: 部署VitePress
+name: 部署 VitePress
 
 on:
   push:
     branches:
       - main # 这段是在推送到 docs 分支时触发该命令
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  deploy-vitepress:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 使用 Node.js 24.x
+        uses: actions/setup-node@v4
         with:
-          ref: main
+          node-version: 24.x
 
-      - name: Setup Node.js and pnpm
-        uses: actions/setup-node@v3
+      - name: 缓存 npm 包
+        uses: actions/cache@v4
+        if: github.actor != 'dependabot[bot]'
         with:
-          node-version: '20.10.0' # 设置 nodejs 的版本
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Install dependencies
-        run: npm install # 使用 pnpm 安装依赖
+      - name: 安装依赖
+        run: npm i
 
-      - name: Build VitePress
-        run: npm run docs:build # 这里是打包 vitepress 命令
+      - name: 构建 VitePress
+        run: npm run docs:build
 
-      - name: Deploy to GitHub Pages
+      - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.DEPLOY_TOKEN }} # 这一步很重要，单独看下面的大步骤，主要是用来给该脚本一些仓库权限
-          publish_dir: .vitepress/dist # 指定该文件夹中的 dist
-          publish_branch: gh-pages # 推送到关联仓库的 gh-pages 分支
-          dotfiles: true  # 包括在提交中，即使被 .gitignore 文件忽略
+          personal_token: ${{ secrets.PAT }}
+          publish_dir: .vitepress/dist
+          external_repository: lishangbu/avalon-site
+          publish_branch: main
+          destination_dir: docs
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
