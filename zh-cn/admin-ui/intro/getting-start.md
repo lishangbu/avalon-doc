@@ -6,6 +6,7 @@
 
 - 熟悉 Node 环境配置及其开发
 - 熟悉 [Vue3](https://cn.vuejs.org/)
+- 熟悉 [Naive UI](https://www.naiveui.com/)
 - 熟悉 前端构建工具，比如 [Vite](https://https://vitejs.cn/vite3-cn/guide/)
 
 ## 准备
