@@ -39,6 +39,13 @@ export default defineConfig({
                     {text: '数据库', link: '/zh-cn/server/environment-setup/postgres'},
                     {text: 'Intellij IDEA', link: '/zh-cn/server/environment-setup/idea'},
                     {text: 'IP2Location', link: '/zh-cn/server/environment-setup/ip2location'},
+                    {text: '幂等控制', link: '/zh-cn/server/environment-setup/idempotent'},
+                ]
+            },
+            {
+                text: '认证与安全',
+                items: [
+                    {text: '登录失败追踪', link: '/zh-cn/server/security/login-failure-tracker'},
                 ]
             },
             {
