@@ -38,6 +38,7 @@ export default defineConfig({
                 items: [
                     {text: '数据库', link: '/zh-cn/server/environment-setup/postgres'},
                     {text: 'Intellij IDEA', link: '/zh-cn/server/environment-setup/idea'},
+                    {text: 'IP2Location', link: '/zh-cn/server/environment-setup/ip2location'},
                 ]
             },
             {
