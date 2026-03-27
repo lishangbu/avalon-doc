@@ -36,6 +36,7 @@ export default defineConfig({
             {
                 text: '环境搭建',
                 items: [
+                    {text: 'Docker Compose 一键启动', link: '/zh-cn/server/environment-setup/docker-compose'},
                     {text: '数据库', link: '/zh-cn/server/environment-setup/postgres'},
                     {text: 'Intellij IDEA', link: '/zh-cn/server/environment-setup/idea'},
                     {text: 'IP2Location', link: '/zh-cn/server/environment-setup/ip2location'},
