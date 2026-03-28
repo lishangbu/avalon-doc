@@ -54,6 +54,8 @@ export default defineConfig({
                 text: '管理平台',
                 items: [
                     {text: '快速开始', link: '/zh-cn/admin-ui/intro/getting-start'},
+                    {text: '通用 CRUD 内核使用指南', link: '/zh-cn/admin-ui/development/crud-kernel'},
+                    {text: 'CRUD 组件接入示例', link: '/zh-cn/admin-ui/development/crud-component-recipes'},
                 ]
             },
         ]
