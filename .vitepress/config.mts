@@ -40,6 +40,7 @@ export default defineConfig({
                     {text: '数据库', link: '/zh-cn/server/environment-setup/postgres'},
                     {text: 'Intellij IDEA', link: '/zh-cn/server/environment-setup/idea'},
                     {text: 'IP2Location', link: '/zh-cn/server/environment-setup/ip2location'},
+                    {text: 'S3 / MinIO', link: '/zh-cn/server/environment-setup/s3'},
                     {text: '幂等控制', link: '/zh-cn/server/environment-setup/idempotent'},
                 ]
             },
