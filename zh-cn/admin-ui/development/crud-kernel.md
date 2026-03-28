@@ -61,6 +61,82 @@
   - 从关联对象或关联数组中提取 ID
 - `createRelation` / `createRelations`
   - 把 ID 或 ID 数组转回 `{ id }` 结构
+- `useQuery` / `useMutation`
+  - 管理请求状态、错误和成功回调
+- `useCrudPageData` / `useCrudListData`
+  - 管理 CRUD 列表加载、查询和分页
+- `useCrudDialog`
+  - 管理 CRUD 弹窗、编辑态详情加载和表单回填
+
+## 请求与状态分层
+
+当前仓库已经把请求层拆成三层：
+
+- `src/api/*`
+  - 纯接口函数
+  - 只负责 HTTP、参数组装、响应 `Zod parse`
+- `src/composables/request/*`
+  - 通用请求状态机
+  - 包括 `useAsyncTask`、`useQuery`、`useMutation`
+- `src/composables/crud/*`
+  - CRUD 页面级编排
+  - 包括 `useCrudPageData`、`useCrudListData`、`useCrudDialog`
+
+这样拆的原因很直接：
+
+- API 层应该保持纯函数，方便在组件、store、路由守卫里复用
+- 请求状态如 `loading / error / refresh / mutate` 不应该散落在每个页面里
+- CRUD 内核组件应该只关心渲染和少量页面编排，不再手写整套请求状态机
+
+### 为什么不是一个万能 `useRequest`
+
+当前实现没有做一个“大而全”的 `useRequest`，而是拆成：
+
+- `useAsyncTask`
+  - 最底层执行器
+  - 负责最近一次请求生效、状态更新和事件钩子
+- `useQuery`
+  - 负责读取类请求
+- `useMutation`
+  - 负责提交类请求
+
+这样比万能胶式的 `useRequest` 更稳定：
+
+- 读写职责清晰
+- 不会把分页、搜索、提交、删除全部塞进一个 composable
+- 后续在业务页组合时更自然
+
+### VueUse 的使用位置
+
+当前请求组合式没有为了“用了 VueUse”而强行依赖一堆函数，而是只借用了合适的能力：
+
+- `tryOnMounted`
+  - 用于在 composable 内安全地触发初始化加载
+- `createEventHook`
+  - 用于暴露成功 / 失败事件钩子
+
+这类能力适合放在请求状态层。
+
+反过来，不建议：
+
+- 把 API 层直接做成 composable
+- 用 VueUse 直接替代整个请求架构
+- 在每个业务页里重复手写 `loading / error / refresh`
+
+### 非标准页面如何处理
+
+并不是所有页面都应该强行套进 `CrudPage` / `CrudList`。
+
+像菜单页这类“左侧树 + 右侧表格 + 自定义弹窗”的页面，更适合：
+
+- 继续保留页面自己的业务布局
+- 直接在页面里组合 `useQuery` / `useMutation`
+- 只把通用请求状态机抽走，不硬塞进通用 CRUD 内核
+
+判断标准：
+
+- 如果页面骨架接近标准 CRUD，优先复用 `CrudPage` / `CrudList`
+- 如果页面布局已经明显超出标准 CRUD，就直接组合请求 composable
 
 ## 字段协议
 
@@ -351,7 +427,7 @@ const config = createCrudListConfig({
 - 查询参数继续用共享工具整理
 - 响应数据优先在 API 层用 `Zod` 做 `parse`
 - 只对确实会漂移的字段声明 schema
-- 其余字段使用 `passthrough` 保留，不要重复手写整份 normalizer
+- 其余字段使用 `looseObject` 保留，不要重复手写整份 normalizer
 
 这样做的目标不是把每个接口都写成很重的 schema，而是：
 
@@ -770,6 +846,8 @@ import { createRelation, createRelations, pickRelationId, collectRelationIds } f
 - 优先使用 `createFlatCrud*` 的 `formModel` / `payload` 做单字段转换
 - 通用转换优先复用现成辅助函数，不要在每个页面重复手写
 - API 层优先使用 `Zod schema parse` 收口响应纠偏，不要扩散 `normalizeXXX`
+- 请求状态优先收口到 `useQuery` / `useMutation`，不要在每个页面重复写 `loading / error`
+- CRUD 列表和弹窗状态优先放进 `useCrudPageData` / `useCrudListData` / `useCrudDialog`
 - 静态字段用 `component: 'input'` 这类内置别名即可
 - 复杂组件直接传组件本体
 - 表单字段和搜索字段可以是不同组件

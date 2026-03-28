@@ -116,6 +116,14 @@ const roleOptions = ref<SelectOption[]>([])
 }
 ```
 
+如果选项数据本身来自接口，当前项目更推荐：
+
+- API 层仍然保持纯函数
+- 用 `useQuery` 管选项的 `loading / error / refresh`
+- 在需要时把 `initialize` 或业务级 composable 接到 CRUD 页面里
+
+也就是说，不要为了加载一个下拉选项，就在页面里继续复制手写一套请求状态。
+
 ## 4. 多选下拉 `NSelect`
 
 ### 示例
